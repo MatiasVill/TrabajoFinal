@@ -30,6 +30,7 @@
     />
 
     <!-- JQUERYS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
@@ -441,7 +442,23 @@
                     <button type="button" class="btn btn-previous">
                       Anterior
                     </button>
-                    <button type="submit" class="btn btn-submit">Enviar</button>
+                    <button type="submit" class="btn btn-submit" onclick=" $(function () { 
+                      var doc = new jsPDF()
+                      doc.text('Formulario Completado', 5, 10)
+                      doc.text('Nombre Negocio:\t\t'+document.querySelector(`#f1-nombre-negocio`).value, 10, 100)
+                      doc.text('Rubro Negocio:\t\t'+document.querySelector(`#f1-rubro`).value, 10, 110)
+                      doc.text('Info Negocio:\t'+document.querySelector(`#f1-acerca-negocio`).value, 10, 120, { align: 'justify', lineHeightFactor: 1.5, maxWidth: 180 })
+
+                      doc.text('Nombre:\t\t'+document.querySelector(`#f1-nombre`).value, 10, 60)
+                      doc.text('Apellido:\t\t'+document.querySelector(`#f1-apellido`).value, 10, 70)
+                      doc.text('Cargo:\t\t'+document.querySelector(`#f1-cargo`).value, 10, 80)
+
+                      doc.text('E-Mail:\t\t'+document.querySelector(`#f1-email`).value, 10, 20)
+                      doc.text('Whatsapp:\t\t'+document.querySelector(`#f1-whatsapp`).value, 10, 30)
+                      doc.text('Redes:\t\t'+document.querySelector(`#f1-redes`).value, 10, 40)
+                      
+                      doc.save('a4.pdf')
+                           });">Enviar</button>
                   </div>
                 </fieldset>
               </div>
